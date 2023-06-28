@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player -B /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug

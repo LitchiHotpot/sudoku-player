@@ -1,0 +1,3 @@
+/Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug/CMakeFiles/suduku_player.dir
+/Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug/CMakeFiles/rebuild_cache.dir

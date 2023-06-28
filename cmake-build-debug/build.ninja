@@ -1,0 +1,169 @@
+## This file contains all the build statements describing the
+# compilation DAG.
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# 
+# Which is the root file.
+# =============================================================================
+
+# =============================================================================
+# Project: suduku_player
+# Configurations: Debug
+# =============================================================================
+
+#############################################
+# Minimal version of Ninja required by this file
+
+ninja_required_version = 1.5
+
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
+# =============================================================================
+# Include auxiliary files.
+
+
+#############################################
+# Include rules file.
+
+include CMakeFiles/rules.ninja
+
+# =============================================================================
+
+#############################################
+# Logical path to working directory; prefix for absolute paths.
+
+cmake_ninja_workdir = /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug/
+# =============================================================================
+# Object build statements for EXECUTABLE target suduku_player
+
+
+#############################################
+# Order-only phony target for suduku_player
+
+build cmake_object_order_depends_target_suduku_player: phony || CMakeFiles/suduku_player.dir
+
+build CMakeFiles/suduku_player.dir/main.cpp.o: CXX_COMPILER__suduku_player_Debug /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/main.cpp || cmake_object_order_depends_target_suduku_player
+  DEP_FILE = CMakeFiles/suduku_player.dir/main.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/suduku_player.dir
+  OBJECT_FILE_DIR = CMakeFiles/suduku_player.dir
+
+build CMakeFiles/suduku_player.dir/DLXNode.cpp.o: CXX_COMPILER__suduku_player_Debug /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/DLXNode.cpp || cmake_object_order_depends_target_suduku_player
+  DEP_FILE = CMakeFiles/suduku_player.dir/DLXNode.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/suduku_player.dir
+  OBJECT_FILE_DIR = CMakeFiles/suduku_player.dir
+
+build CMakeFiles/suduku_player.dir/DLXSolver.cpp.o: CXX_COMPILER__suduku_player_Debug /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/DLXSolver.cpp || cmake_object_order_depends_target_suduku_player
+  DEP_FILE = CMakeFiles/suduku_player.dir/DLXSolver.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/suduku_player.dir
+  OBJECT_FILE_DIR = CMakeFiles/suduku_player.dir
+
+build CMakeFiles/suduku_player.dir/SudokuSolver.cpp.o: CXX_COMPILER__suduku_player_Debug /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/SudokuSolver.cpp || cmake_object_order_depends_target_suduku_player
+  DEP_FILE = CMakeFiles/suduku_player.dir/SudokuSolver.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/suduku_player.dir
+  OBJECT_FILE_DIR = CMakeFiles/suduku_player.dir
+
+build CMakeFiles/suduku_player.dir/SudokuGenerator.cpp.o: CXX_COMPILER__suduku_player_Debug /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/SudokuGenerator.cpp || cmake_object_order_depends_target_suduku_player
+  DEP_FILE = CMakeFiles/suduku_player.dir/SudokuGenerator.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/suduku_player.dir
+  OBJECT_FILE_DIR = CMakeFiles/suduku_player.dir
+
+build CMakeFiles/suduku_player.dir/DLXGenerator.cpp.o: CXX_COMPILER__suduku_player_Debug /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/DLXGenerator.cpp || cmake_object_order_depends_target_suduku_player
+  DEP_FILE = CMakeFiles/suduku_player.dir/DLXGenerator.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/suduku_player.dir
+  OBJECT_FILE_DIR = CMakeFiles/suduku_player.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target suduku_player
+
+
+#############################################
+# Link the executable suduku_player
+
+build suduku_player: CXX_EXECUTABLE_LINKER__suduku_player_Debug CMakeFiles/suduku_player.dir/main.cpp.o CMakeFiles/suduku_player.dir/DLXNode.cpp.o CMakeFiles/suduku_player.dir/DLXSolver.cpp.o CMakeFiles/suduku_player.dir/SudokuSolver.cpp.o CMakeFiles/suduku_player.dir/SudokuGenerator.cpp.o CMakeFiles/suduku_player.dir/DLXGenerator.cpp.o
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5
+  OBJECT_DIR = CMakeFiles/suduku_player.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = suduku_player
+  TARGET_PDB = suduku_player.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player -B/Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Target aliases.
+
+# =============================================================================
+# Folder targets.
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/cmake-build-debug
+
+build all: phony suduku_player
+
+# =============================================================================
+# Built-in targets
+
+
+#############################################
+# Re-run CMake if any of its inputs changed.
+
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
+  pool = console
+
+
+#############################################
+# A missing CMake input file is not an error.
+
+build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean all the built files.
+
+build clean: CLEAN
+
+
+#############################################
+# Print all primary targets available.
+
+build help: HELP
+
+
+#############################################
+# Make the all target the default.
+
+default all
