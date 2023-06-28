@@ -18,16 +18,6 @@ vector<vector<int>> SudokuGenerator:: generateSudokus(int sudokuCount) {
                 copy(core1.begin()+j*3, core1.begin()+(j*3+3), originalSudoku.begin() +i*30+j*9);
             }
         }
-//        int k=0;
-//        for (auto& element : originalSudoku) {
-//            cout<<element;
-//            k++;
-//            if(k==9){
-//                cout<<endl;
-//                k=0;
-//            }
-//        }
-        //Solve the zero sudoku to get sudoku outcomes
         DLXGenerator generator = DLXGenerator();
         DLXNode *listHead = new DLXNode();
         SudokuSolver solver = SudokuSolver();
@@ -42,19 +32,30 @@ vector<vector<int>> SudokuGenerator::generatePuzzles(int sudokuCount,int fillPuz
     mt19937 gen(rd());
     shuffle(sequence.begin(), sequence.end(), gen);
     vector<vector<int>> answers;
-    int j=0;
+    int j=0,answer_index=0;
     answers= generateSudokus(sudokuCount);
     for(vector<int> answer:answers){
+        j=0;
         for(int i=0;i<fillPuzzle;i++){
             int tmp=answer[sequence[j]];
-            answer[sequence[j]]=0;
-            if(isAnswerUnique(answer))
-                j++;
-            else {
-                answer[sequence[j]] = tmp;
+            answers[answer_index][sequence[j]]=0;
+            if(isAnswerUnique(answers[answer_index])){
                 j++;
             }
+            else {
+                answers[answer_index][sequence[j]]=tmp;
+                j++;
+                i--;
+            }
+            if(j>=81){
+                cout<<"ERROR!";
+                break;
+            }
         }
+        random_device rd;
+        mt19937 gen(rd());
+        shuffle(sequence.begin(), sequence.end(), gen);
+        answer_index++;
     }
     return answers;
 }
@@ -64,7 +65,6 @@ bool SudokuGenerator::isAnswerUnique(vector<int> &sudoku){
     SudokuSolver solver;
     DLXNode* listHead = new DLXNode();
     solver.solveWithAllAnswers(listHead, sudoku, tmp);
-
     if(tmp.size()==1)
         return true;
     else

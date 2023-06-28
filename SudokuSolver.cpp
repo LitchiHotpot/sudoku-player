@@ -26,7 +26,7 @@ void SudokuSolver::solveWithAllAnswers(DLXNode *listHead, vector<int>& sudoku, v
     tempSolution.reserve(sudokuSize);
     lastSolution.reserve(sudokuSize);
     dlxSolver.solveWithAllAnswers(listHead, tempSolution, lastSolution, 0); //Got DLX answer
-
+    answers.resize(lastSolution.size());
     for (int i = 0; i < answers.size(); ++i) {
         vector<int> answer;
         solutionToAnswer(lastSolution[i], answer);

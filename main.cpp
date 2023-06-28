@@ -13,10 +13,15 @@ int main() {
     vector<vector<int>> sudokus;
     vector<int> answers;
     SudokuGenerator generator;
-    sudokus=generator.generateSudokus(10);
+    sudokus=generator.generatePuzzles(10,70);
 
     for (auto& row : sudokus) {
         int k=0;
+        vector<vector<int>> answers;
+        SudokuSolver solver;
+        DLXNode* listHead = new DLXNode();
+        solver.solveWithAllAnswers(listHead, row, answers);
+        cout<<answers.size()<<endl;
         for (auto& element : row) {
             cout<<element;
             k++;
