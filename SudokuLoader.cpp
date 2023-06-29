@@ -41,7 +41,7 @@ void SudokuLoader::writeToFile(vector<vector<int>>& sudokuSet, fstream& file){
 	int sudokuCount = sudokuSet.size();
 	//char content[sudokuCount * (19 * 9 + 2)];
     for (unsigned int i = 0; i < sudokuCount; ++i) { //Sudoku set
-        char content[19 * 9 + 2];
+        char content[19 * 9 + 2 + 9];
         int contentIndex = 0;
 
         for (unsigned int j = 0, k = 0; j < sudokuSize; ++j, ++k) { //One sudoku
@@ -53,7 +53,8 @@ void SudokuLoader::writeToFile(vector<vector<int>>& sudokuSet, fstream& file){
             contentIndex++;
 
             if (k == sudokuLength - 1) {
-                content[contentIndex] = '\n'; 
+                content[contentIndex] = '\n';
+                contentIndex++;
                 k = -1;
             }
         }

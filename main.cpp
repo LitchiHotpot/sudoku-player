@@ -2,8 +2,10 @@
 #include <algorithm>
 #include <vector>
 #include <random>
+#include <stdlib.h>
 #include "SudokuSolver.h"
 #include "SudokuGenerator.h"
+#include "SudokuLoader.h"
 using namespace std;
 
 //数独以vector<int>形式构建，如果需要生成多个数独，则用二维向量vector<vector<int>>
@@ -23,46 +25,23 @@ using namespace std;
 //第二个参数为求解的数独,第三个参数为生成的数独答案
 
 //TODO
-//文件读写
 //主函数命令行实现
 //测试(代码规范和覆盖率)
 //覆盖率可能很低,之后进行冗余代码删除
 
-void solvePuzzle(fstream& puzzleFile){
-    SudokuSolver solver;
-    DLXNode* listHead = new DLXNode();
-    vector<vector<int>> sudokus;
-    vector<int> answers;
-    SudokuGenerator generator;
-    sudokus=generator.generatePuzzles(10,70);
-
-    SudokuLoader loader = SudokuLoader();
-    vector<vector<int>> sudokuSet = loader.loadFromFile(puzzleFile);
-	int sudokuCount = sudokuSet.size();
-
-    for (auto& row : sudokus) {
-        int k=0;
-        vector<vector<int>> answers;
-        SudokuSolver solver;
-        DLXNode* listHead = new DLXNode();
-        solver.solveWithAllAnswers(listHead, row, answers);
-        cout<<answers.size()<<endl;
-        for (auto& element : row) {
-            cout<<element;
-            k++;
-            if(k==9){
-                cout<<endl;
-                k=0;
-            }
-        }
-        
-    fstream solutionFile;
-    solutionFile.open("sudoku.txt", ios::out);
-    if (answers.size() == 0) {cout << "无解" << endl;
-    }
-    else {loader.writeToFile(answers, solutionFile);
-    }
-    solutionFile.close();   
+int main(int argc,char * argv[]){
+    if(argv[1][1] == 'c'){
+        //生成不重复的数独终局至文件 -c n
+        int sudoku_count;
+        sudoku_count=atoi(argv[2]);
+        SudokuGenerator generator;
+        SudokuLoader loader;
+        fstream sudokusFile;
+        sudokusFile.open("sudokuEnd.txt", ios::out);
+        vector<vector<int>> sudokus;
+        sudokus=generator.generateSudokus(sudoku_count);
+        loader.writeToFile(sudokus,sudokusFile);
+        sudokusFile.close();
     }
 }
 

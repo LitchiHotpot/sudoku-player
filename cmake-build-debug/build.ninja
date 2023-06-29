@@ -82,6 +82,12 @@ build CMakeFiles/suduku_player.dir/DLXGenerator.cpp.o: CXX_COMPILER__suduku_play
   OBJECT_DIR = CMakeFiles/suduku_player.dir
   OBJECT_FILE_DIR = CMakeFiles/suduku_player.dir
 
+build CMakeFiles/suduku_player.dir/SudokuLoader.cpp.o: CXX_COMPILER__suduku_player_Debug /Users/sokoface/Documents/大三下/软件工程/结对编程/suduku-player/SudokuLoader.cpp || cmake_object_order_depends_target_suduku_player
+  DEP_FILE = CMakeFiles/suduku_player.dir/SudokuLoader.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/suduku_player.dir
+  OBJECT_FILE_DIR = CMakeFiles/suduku_player.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target suduku_player
@@ -90,7 +96,7 @@ build CMakeFiles/suduku_player.dir/DLXGenerator.cpp.o: CXX_COMPILER__suduku_play
 #############################################
 # Link the executable suduku_player
 
-build suduku_player: CXX_EXECUTABLE_LINKER__suduku_player_Debug CMakeFiles/suduku_player.dir/main.cpp.o CMakeFiles/suduku_player.dir/DLXNode.cpp.o CMakeFiles/suduku_player.dir/DLXSolver.cpp.o CMakeFiles/suduku_player.dir/SudokuSolver.cpp.o CMakeFiles/suduku_player.dir/SudokuGenerator.cpp.o CMakeFiles/suduku_player.dir/DLXGenerator.cpp.o
+build suduku_player: CXX_EXECUTABLE_LINKER__suduku_player_Debug CMakeFiles/suduku_player.dir/main.cpp.o CMakeFiles/suduku_player.dir/DLXNode.cpp.o CMakeFiles/suduku_player.dir/DLXSolver.cpp.o CMakeFiles/suduku_player.dir/SudokuSolver.cpp.o CMakeFiles/suduku_player.dir/SudokuGenerator.cpp.o CMakeFiles/suduku_player.dir/DLXGenerator.cpp.o CMakeFiles/suduku_player.dir/SudokuLoader.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -mmacosx-version-min=12.5
   OBJECT_DIR = CMakeFiles/suduku_player.dir
   POST_BUILD = :
