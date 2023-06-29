@@ -28,13 +28,17 @@ using namespace std;
 //测试(代码规范和覆盖率)
 //覆盖率可能很低,之后进行冗余代码删除
 
-int main() {
+void solvePuzzle(fstream& puzzleFile){
     SudokuSolver solver;
     DLXNode* listHead = new DLXNode();
     vector<vector<int>> sudokus;
     vector<int> answers;
     SudokuGenerator generator;
     sudokus=generator.generatePuzzles(10,70);
+
+    SudokuLoader loader = SudokuLoader();
+    vector<vector<int>> sudokuSet = loader.loadFromFile(puzzleFile);
+	int sudokuCount = sudokuSet.size();
 
     for (auto& row : sudokus) {
         int k=0;
@@ -51,7 +55,14 @@ int main() {
                 k=0;
             }
         }
-
+        
+    fstream solutionFile;
+    solutionFile.open("sudoku.txt", ios::out);
+    if (answers.size() == 0) {cout << "无解" << endl;
+    }
+    else {loader.writeToFile(answers, solutionFile);
+    }
+    solutionFile.close();   
     }
 }
 
