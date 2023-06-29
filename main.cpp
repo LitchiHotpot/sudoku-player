@@ -43,5 +43,47 @@ int main(int argc,char * argv[]){
         loader.writeToFile(sudokus,sudokusFile);
         sudokusFile.close();
     }
+    if (argv[1][1] == 's') {
+        //求解路径为path的文件中的数独问题至文件 -s n
+
+        SudokuGenerator generator;
+        SudokuLoader loader;
+
+        fstream puzzleFile;
+        puzzleFile.open("argv[2]", ios::in);
+        //-------------------------------------------------
+        
+        vector<vector<int>> sudokuSet = loader.loadFromFile(puzzleFile);
+        int sudokuCount = sudokuSet.size();
+        //Solve sudokus
+        vector<vector<int>> answers;
+        answers.resize(sudokuCount);
+
+        for (unsigned int j = 0; j < sudokuSet.size(); ++j) {
+            SudokuSolver solver = SudokuSolver();
+            DLXNode* listHead = new DLXNode();
+            vector<int> answer;
+            if (solver.solveSudoku(listHead, sudokuSet[j], answer)) { 
+                //Answer got correctly
+                answers[j] = answer;
+            }
+            else {
+                cout << "No solution for sudoku No." << j + 1 << endl;
+            }
+        }
+
+        //Save solution to file
+        fstream solutionFile;
+        solutionFile.open("sudoku.txt", ios::out);
+        if (answers.size() == 0) {
+            cout << "No solutions for all sudokus" << endl;
+        }
+        else {
+            loader.writeToFile(answers, solutionFile);
+        }
+        solutionFile.close();
+        //-------------------------------------------------
+        puzzleFile.close();
+    }
 }
 
