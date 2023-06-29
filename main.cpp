@@ -39,7 +39,7 @@ int main(int argc,char * argv[]){
         fstream sudokusFile;
         sudokusFile.open("sudokuEnd.txt", ios::out);
         vector<vector<int>> sudokus;
-        sudokus=generator.generateSudokus(sudoku_count);
+        sudokus=generator.generatePuzzles(sudoku_count,3);
         loader.writeToFile(sudokus,sudokusFile);
         sudokusFile.close();
     }
@@ -50,11 +50,12 @@ int main(int argc,char * argv[]){
         SudokuLoader loader;
 
         fstream puzzleFile;
-        puzzleFile.open("argv[2]", ios::in);
+        puzzleFile.open(argv[2], ios::in);
         //-------------------------------------------------
         
         vector<vector<int>> sudokuSet = loader.loadFromFile(puzzleFile);
         int sudokuCount = sudokuSet.size();
+        cout<<sudokuCount<<endl;
         //Solve sudokus
         vector<vector<int>> answers;
         answers.resize(sudokuCount);
