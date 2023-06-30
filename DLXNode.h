@@ -1,9 +1,10 @@
+// Copyright [2023] <Copyright Justvb&LitchiHotpot>
 #pragma once
 #include <iostream>
 using namespace std;
-//DLXNode的结构见论文: "Dancing Links" by Donald Knuth
+// DLXNode的结构见论文: "Dancing Links" by Donald Knuth
 class DLXNode {
-public:
+ public:
     DLXNode* leftNode = NULL;
     DLXNode* rightNode = NULL;
     DLXNode* upNode = NULL;
@@ -18,22 +19,22 @@ public:
     void appendDownNode(DLXNode* tempNode);
 };
 
-//列头，管理数独的一整列
+// 列头，管理数独的一整列
 class ColumnHead: public DLXNode {
-public:
+ public:
     int numberOfOne = 0;
 
-    ColumnHead(int columnIndex) {
+    explicit ColumnHead(int columnIndex) {
         this->columnIndex = columnIndex;
     }
 };
 
-//包含列头的common node
+// 包含列头的common node
 class CommonNode: public DLXNode {
-public:
+ public:
     int rowIndex;
     ColumnHead* columnHead = NULL;
 
-    CommonNode(int rowIndex, ColumnHead *columnHead) : rowIndex(rowIndex), columnHead(columnHead) {}
+    CommonNode(int rowIndex, ColumnHead *columnHead) :
+    rowIndex(rowIndex), columnHead(columnHead) {}
 };
-
