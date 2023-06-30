@@ -30,32 +30,17 @@ using namespace std;
 //测试(代码规范和覆盖率)
 //覆盖率可能很低,之后进行冗余代码删除
 
-vector<string> splitString(const string& input, char delimiter) {
-    vector<string> tokens;
-    stringstream ss(input);
-    string item;
-
-    while (getline(ss, item, delimiter)) {
-        tokens.push_back(item);
+int main(int argc,char * argv[]){
+    if(argv[1][1]=='h'){
+        cout<<"Welcome to use the DLX Sudoku program. The instructions of the program are as follows:"<<endl;
+        cout<<"-c Generate Sudoku end to file"<<endl<<"-s Read the file and solve Sudoku"<<endl;
+        cout<<"-n Generate Sudoku questions with a unique solution"<<endl<<"-m Specify the difficulty of the question"<<endl;
+        cout<<"-r Formulate the number of questions to be hollowed out"<<endl<<"-u Generate a unique solution to the question (negligible)"<<endl;
     }
-
-    return tokens;
-}
-
-int main(){
-    string input;
-    cout<<"Welcome to use the DLX Sudoku program. The instructions of the program are as follows:"<<endl;
-    cout<<"-c Generate Sudoku end to file"<<endl<<"-s Read the file and solve Sudoku"<<endl;
-    cout<<"-n Generate Sudoku questions with a unique solution"<<endl<<"-m Specify the difficulty of the question"<<endl;
-    cout<<"-r Formulate the number of questions to be hollowed out"<<endl<<"-u Generate a unique solution to the question (negligible)"<<endl;
-    cout << "Please input instruction: ";
-    getline(cin, input);
-    vector<string> tokens = splitString(input, '$');
-
-    if(tokens[0]=="-c"){
+    else if(argv[1][1] == 'c'){
         //生成不重复的数独终局至文件 -c n
         int sudoku_count;
-        sudoku_count=atoi(tokens[1].data());
+        sudoku_count=atoi(argv[2]);
         SudokuGenerator generator;
         SudokuLoader loader;
         fstream sudokusFile;
@@ -64,15 +49,16 @@ int main(){
         sudokus=generator.generateSudokus(sudoku_count);
         loader.writeToFile(sudokus,sudokusFile);
         sudokusFile.close();
+        cout<<"Generate Ends Finished!"<<endl;
     }
-    else if (tokens[0]=="-s") {
+    else if (argv[1][1] == 's') {
         //求解路径为path的文件中的数独问题至文件 -s n
 
         SudokuGenerator generator;
         SudokuLoader loader;
 
         fstream puzzleFile;
-        puzzleFile.open(tokens[1].data(), ios::in);
+        puzzleFile.open(argv[2], ios::in);
         //-------------------------------------------------
         
         vector<vector<int>> sudokuSet = loader.loadFromFile(puzzleFile);
@@ -107,11 +93,12 @@ int main(){
         solutionFile.close();
         //-------------------------------------------------
         puzzleFile.close();
+        cout<<"Finished!"<<endl;
     }
-    else if(tokens[0]=="-n"){
+    else if(argv[1][1] == 'n'){
         int sudoku_count;
-        sudoku_count = atoi(tokens[1].data());
-        if(tokens.size()<=2) {
+        sudoku_count = atoi(argv[2]);
+        if(argc<=3) {
             //生成n个数独谜题,保证具有唯一解,难度随机
             random_device rd;
             mt19937 gen(rd());
@@ -127,10 +114,10 @@ int main(){
             sudokusFile.close();
         }
         else{
-            if(tokens[2]=="-m"){
+            if(argv[3][1]=='m'){
                 //指定难度
                 int min_tab,max_tab;
-                switch (atoi(tokens[3].data())) {
+                switch (atoi(argv[4])) {
                     case 1:
                         min_tab=20;
                         max_tab=30;
@@ -144,7 +131,7 @@ int main(){
                         max_tab=55;
                         break;
                     default:
-                        string diffc_error = "Difficulty " + tokens[3] + " not exist, please check!";
+                        string diffc_error = "Difficulty " + string(argv[4]) + " not exist, please check!";
                         throw invalid_argument(diffc_error);
                 }
                 random_device rd;
@@ -160,9 +147,9 @@ int main(){
                 loader.writeToFile(sudokus, sudokusFile);
                 sudokusFile.close();
             }
-            else if(tokens[2]=="-r"){
-                int min_tab=int(tokens[3][0]-'0')*10+int(tokens[3][1]-'0');
-                int max_tab=int(tokens[3][3]-'0')*10+int(tokens[3][4]-'0');
+            else if(argv[3][1] == 'r'){
+                int min_tab=int(argv[4][0]-'0')*10+int(argv[4][1]-'0');
+                int max_tab=int(argv[4][3]-'0')*10+int(argv[4][4]-'0');
                 random_device rd;
                 mt19937 gen(rd());
                 uniform_int_distribution<int> dis(min_tab, max_tab);
@@ -177,13 +164,14 @@ int main(){
                 sudokusFile.close();
             }
             else{
-                string inst_error = "Instruction " + tokens[2] + " not exist, please check!";
+                string inst_error = "Instruction " + string(argv[3]) + " not exist, please check!";
                 throw invalid_argument(inst_error);
             }
         }
+        cout<<"Generate Puzzles Finished!"<<endl;
     }
     else{
-        string inst_error = "Instruction " + tokens[0] + " not exist, please check!";
+        string inst_error = "Instruction " + string(argv[1])+ " not exist, please check!";
         throw invalid_argument(inst_error);
     }
 }
