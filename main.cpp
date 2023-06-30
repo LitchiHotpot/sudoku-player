@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <vector>
 #include <random>
+#include <string>
+#include <sstream>
 #include <stdlib.h>
 #include "SudokuSolver.h"
 #include "SudokuGenerator.h"
@@ -25,37 +27,57 @@ using namespace std;
 //第二个参数为求解的数独,第三个参数为生成的数独答案
 
 //TODO
-//主函数命令行实现
 //测试(代码规范和覆盖率)
 //覆盖率可能很低,之后进行冗余代码删除
 
-int main(int argc,char * argv[]){
-    if(argv[1][1] == 'c'){
+vector<string> splitString(const string& input, char delimiter) {
+    vector<string> tokens;
+    stringstream ss(input);
+    string item;
+
+    while (getline(ss, item, delimiter)) {
+        tokens.push_back(item);
+    }
+
+    return tokens;
+}
+
+int main(){
+    string input;
+    cout<<"Welcome to use the DLX Sudoku program. The instructions of the program are as follows:"<<endl;
+    cout<<"-c Generate Sudoku end to file"<<endl<<"-s Read the file and solve Sudoku"<<endl;
+    cout<<"-n Generate Sudoku questions with a unique solution"<<endl<<"-m Specify the difficulty of the question"<<endl;
+    cout<<"-r Formulate the number of questions to be hollowed out"<<endl<<"-u Generate a unique solution to the question (negligible)"<<endl;
+    cout << "Please input instruction: ";
+    getline(cin, input);
+    vector<string> tokens = splitString(input, '$');
+
+    if(tokens[0]=="-c"){
         //生成不重复的数独终局至文件 -c n
         int sudoku_count;
-        sudoku_count=atoi(argv[2]);
+        sudoku_count=atoi(tokens[1].data());
         SudokuGenerator generator;
         SudokuLoader loader;
         fstream sudokusFile;
         sudokusFile.open("sudokuEnd.txt", ios::out);
         vector<vector<int>> sudokus;
-        sudokus=generator.generatePuzzles(sudoku_count,3);
+        sudokus=generator.generateSudokus(sudoku_count);
         loader.writeToFile(sudokus,sudokusFile);
         sudokusFile.close();
     }
-    if (argv[1][1] == 's') {
+    else if (tokens[0]=="-s") {
         //求解路径为path的文件中的数独问题至文件 -s n
 
         SudokuGenerator generator;
         SudokuLoader loader;
 
         fstream puzzleFile;
-        puzzleFile.open(argv[2], ios::in);
+        puzzleFile.open(tokens[1].data(), ios::in);
         //-------------------------------------------------
         
         vector<vector<int>> sudokuSet = loader.loadFromFile(puzzleFile);
         int sudokuCount = sudokuSet.size();
-        cout<<sudokuCount<<endl;
+        cout<<sudokuCount<<" sudokus solved!"<<endl;
         //Solve sudokus
         vector<vector<int>> answers;
         answers.resize(sudokuCount);
@@ -85,6 +107,84 @@ int main(int argc,char * argv[]){
         solutionFile.close();
         //-------------------------------------------------
         puzzleFile.close();
+    }
+    else if(tokens[0]=="-n"){
+        int sudoku_count;
+        sudoku_count = atoi(tokens[1].data());
+        if(tokens.size()<=2) {
+            //生成n个数独谜题,保证具有唯一解,难度随机
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution<int> dis(20, 55);
+            int fill_count = dis(gen);
+            SudokuGenerator generator;
+            SudokuLoader loader;
+            fstream sudokusFile;
+            sudokusFile.open("sudokuPuzzles.txt", ios::out);
+            vector<vector<int>> sudokus;
+            sudokus = generator.generatePuzzles(sudoku_count, fill_count);
+            loader.writeToFile(sudokus, sudokusFile);
+            sudokusFile.close();
+        }
+        else{
+            if(tokens[2]=="-m"){
+                //指定难度
+                int min_tab,max_tab;
+                switch (atoi(tokens[3].data())) {
+                    case 1:
+                        min_tab=20;
+                        max_tab=30;
+                        break;
+                    case 2:
+                        min_tab=30;
+                        max_tab=45;
+                        break;
+                    case 3:
+                        min_tab=45;
+                        max_tab=55;
+                        break;
+                    default:
+                        string diffc_error = "Difficulty " + tokens[3] + " not exist, please check!";
+                        throw invalid_argument(diffc_error);
+                }
+                random_device rd;
+                mt19937 gen(rd());
+                uniform_int_distribution<int> dis(min_tab, max_tab);
+                int fill_count = dis(gen);
+                SudokuGenerator generator;
+                SudokuLoader loader;
+                fstream sudokusFile;
+                sudokusFile.open("sudokuPuzzles.txt", ios::out);
+                vector<vector<int>> sudokus;
+                sudokus = generator.generatePuzzles(sudoku_count, fill_count);
+                loader.writeToFile(sudokus, sudokusFile);
+                sudokusFile.close();
+            }
+            else if(tokens[2]=="-r"){
+                int min_tab=int(tokens[3][0]-'0')*10+int(tokens[3][1]-'0');
+                int max_tab=int(tokens[3][3]-'0')*10+int(tokens[3][4]-'0');
+                random_device rd;
+                mt19937 gen(rd());
+                uniform_int_distribution<int> dis(min_tab, max_tab);
+                int fill_count = dis(gen);
+                SudokuGenerator generator;
+                SudokuLoader loader;
+                fstream sudokusFile;
+                sudokusFile.open("sudokuPuzzles.txt", ios::out);
+                vector<vector<int>> sudokus;
+                sudokus = generator.generatePuzzles(sudoku_count, fill_count);
+                loader.writeToFile(sudokus, sudokusFile);
+                sudokusFile.close();
+            }
+            else{
+                string inst_error = "Instruction " + tokens[2] + " not exist, please check!";
+                throw invalid_argument(inst_error);
+            }
+        }
+    }
+    else{
+        string inst_error = "Instruction " + tokens[0] + " not exist, please check!";
+        throw invalid_argument(inst_error);
     }
 }
 

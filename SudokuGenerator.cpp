@@ -48,8 +48,7 @@ vector<vector<int>> SudokuGenerator::generatePuzzles(int sudokuCount,int fillPuz
                 i--;
             }
             if(j>=81){
-                cout<<"ERROR!";
-                break;
+                throw invalid_argument("There are too many spaces to guarantee the only solution, please retry!");
             }
         }
         random_device rd;
