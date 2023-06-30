@@ -3,8 +3,9 @@
 #define sudokuLength 9
 #define sudokuSize 81
 
-//调用DLXSolver的solve（）来求解一个数独，将解决方案转换为数组
-bool SudokuSolver::solveSudoku(DLXNode *listHead, vector<int> &sudoku, vector<int> &answer) {
+// 调用DLXSolver的solve（）来求解一个数独，将解决方案转换为数组
+bool SudokuSolver::solveSudoku(DLXNode *listHead,
+vector<int> &sudoku, vector<int> &answer) {
     transformToList(sudoku, listHead);
     DLXSolver dlxSolver = DLXSolver();
     vector<CommonNode*> solution;
@@ -14,7 +15,8 @@ bool SudokuSolver::solveSudoku(DLXNode *listHead, vector<int> &sudoku, vector<in
         return false;
     }
 
-    solutionToAnswer(solution, answer); //得到答案
+    solutionToAnswer(solution, answer);
+    // 得到答案
     return true;
 }
 
@@ -34,8 +36,9 @@ void SudokuSolver::solveWithAllAnswers(DLXNode *listHead, vector<int>& sudoku, v
     }
 }
 
-//Transform dlx solution into sudoku answer
-void SudokuSolver::solutionToAnswer(vector<CommonNode*>& solution, vector<int>& answer) {
+//  Transform dlx solution into sudoku answer
+void SudokuSolver::solutionToAnswer(vector<CommonNode*>
+& solution, vector<int>& answer) {
     answer.resize(sudokuSize);
     DLXNode* lastNode = NULL;
     int solutionIndex;
@@ -50,9 +53,10 @@ void SudokuSolver::solutionToAnswer(vector<CommonNode*>& solution, vector<int>& 
     }
 }
 
-//将数独转换为正交列表
-void SudokuSolver::transformToList(vector<int>& sudokuArray, DLXNode *listHead) {
-    //Get the subscripts of ones
+// 将数独转换为正交列表
+void SudokuSolver::transformToList(vector<int>
+& sudokuArray, DLXNode *listHead) {
+    // Get the subscripts of ones
     for (unsigned int j = 0; j < sudokuArray.size(); ++j) {
         int value = sudokuArray[j];
         if (value == 0){ //Zero means value not accessible, all elements possibilities must be considered
@@ -83,7 +87,7 @@ int SudokuSolver::indexToColumn(int index, int columnLenghth) {
     return index % columnLenghth;
 }
 
-//添加一个元素的信息下标
+// 添加一个元素的信息下标
 void SudokuSolver::appendOneSubscript(vector<vector<int>>& elementSubscriptss, int index, int value) {
     int row = indexToRow(index, sudokuLength);
     int column = indexToColumn(index, sudokuLength);
@@ -96,8 +100,8 @@ void SudokuSolver::appendOneSubscript(vector<vector<int>>& elementSubscriptss, i
     elementSubscriptss.push_back(elementSubscripts);
 }
 
-//根据正交列表索引获取值
-inline int SudokuSolver::getValue(int index){
+// 根据正交列表索引获取值
+inline int SudokuSolver::getValue(int index) {
     return (((index - sudokuSize) % sudokuLength) + 1);
 }
 

@@ -1,3 +1,4 @@
+// Copyright [2023] <Copyright Justvb&LitchiHotpot>
 #include "DLXNode.h"
 #include <iostream>
 
