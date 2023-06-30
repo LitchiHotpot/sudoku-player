@@ -44,6 +44,5 @@ void DLXGenerator:: appendLine(vector<ColumnHead*> columnHeads, vector<int> elem
         currentNode->columnIndex = columnHead->columnIndex;
         columnHead->numberOfOne++;
     }
-
     lastHorizontalNode->appendRightNode(firstHorizontalNode);
 }

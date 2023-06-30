@@ -26,10 +26,6 @@ using namespace std;
 //输入参数DLXNode *listHead, vector<int>& sudoku, vector<int> &answer
 //第二个参数为求解的数独,第三个参数为生成的数独答案
 
-//TODO
-//测试(代码规范和覆盖率)
-//覆盖率可能很低,之后进行冗余代码删除
-
 int main(int argc,char * argv[]){
     if(argv[1][1]=='h'){
         cout<<"Welcome to use the DLX Sudoku program. The instructions of the program are as follows:"<<endl;
@@ -60,7 +56,7 @@ int main(int argc,char * argv[]){
         fstream puzzleFile;
         puzzleFile.open(argv[2], ios::in);
         //-------------------------------------------------
-        
+
         vector<vector<int>> sudokuSet = loader.loadFromFile(puzzleFile);
         int sudokuCount = sudokuSet.size();
         cout<<sudokuCount<<" sudokus solved!"<<endl;
@@ -72,7 +68,7 @@ int main(int argc,char * argv[]){
             SudokuSolver solver = SudokuSolver();
             DLXNode* listHead = new DLXNode();
             vector<int> answer;
-            if (solver.solveSudoku(listHead, sudokuSet[j], answer)) { 
+            if (solver.solveSudoku(listHead, sudokuSet[j], answer)) {
                 //Answer got correctly
                 answers[j] = answer;
             }

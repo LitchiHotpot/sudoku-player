@@ -3,18 +3,18 @@
 #define sudokuLength 9
 #define sudokuSize 81
 
-//Invoke DLXSolver's solve() to solve one sudoku, transform solution into array
+//调用DLXSolver的solve（）来求解一个数独，将解决方案转换为数组
 bool SudokuSolver::solveSudoku(DLXNode *listHead, vector<int> &sudoku, vector<int> &answer) {
     transformToList(sudoku, listHead);
     DLXSolver dlxSolver = DLXSolver();
     vector<CommonNode*> solution;
-    dlxSolver.solveWithOneAnswer(listHead, solution, 0); //Got DLX answer
+    dlxSolver.solveWithOneAnswer(listHead, solution, 0); //得到DLX答案
 
-    if (solution.size() != sudokuSize ) { //The solution wasn't got
+    if (solution.size() != sudokuSize ) { //没有得到解决方案
         return false;
     }
 
-    solutionToAnswer(solution, answer); //Answer got
+    solutionToAnswer(solution, answer); //得到答案
     return true;
 }
 
@@ -25,28 +25,9 @@ void SudokuSolver::solveWithAllAnswers(DLXNode *listHead, vector<int>& sudoku, v
     vector<vector<CommonNode*>> lastSolution;
     tempSolution.reserve(sudokuSize);
     lastSolution.reserve(sudokuSize);
-    dlxSolver.solveWithAllAnswers(listHead, tempSolution, lastSolution, 0); //Got DLX answer
+    dlxSolver.solveWithAllAnswers(listHead, tempSolution, lastSolution, 0);
     answers.resize(lastSolution.size());
     for (int i = 0; i < answers.size(); ++i) {
-        vector<int> answer;
-        solutionToAnswer(lastSolution[i], answer);
-        answers[i] = answer;
-    }
-}
-
-//Solve one sudoku with different answers
-void SudokuSolver::solveWithMultiAnswers(DLXNode *listHead, vector<int>& sudoku, vector<vector<int>>& answers, int answerCount) {
-    transformToList(sudoku, listHead);
-    DLXSolver dlxSolver = DLXSolver();
-    vector<CommonNode*> tempSolution;
-    vector<vector<CommonNode*>> lastSolution;
-    tempSolution.reserve(sudokuSize);
-    lastSolution.reserve(sudokuSize);
-    dlxSolver.solveWithCertainAnswers(listHead, tempSolution, lastSolution, answerCount, 0); //Got DLX answer
-
-    //Get answers from lastSolution
-    answers.resize(answerCount);
-    for (int i = 0; i < answerCount; ++i) {
         vector<int> answer;
         solutionToAnswer(lastSolution[i], answer);
         answers[i] = answer;
@@ -69,7 +50,7 @@ void SudokuSolver::solutionToAnswer(vector<CommonNode*>& solution, vector<int>& 
     }
 }
 
-//Transform sudoku into orthogonal list
+//将数独转换为正交列表
 void SudokuSolver::transformToList(vector<int>& sudokuArray, DLXNode *listHead) {
     //Get the subscripts of ones
     for (unsigned int j = 0; j < sudokuArray.size(); ++j) {
@@ -102,9 +83,8 @@ int SudokuSolver::indexToColumn(int index, int columnLenghth) {
     return index % columnLenghth;
 }
 
-//Add one element's info subscript
+//添加一个元素的信息下标
 void SudokuSolver::appendOneSubscript(vector<vector<int>>& elementSubscriptss, int index, int value) {
-    //vector<int> elementSubscripts;
     int row = indexToRow(index, sudokuLength);
     int column = indexToColumn(index, sudokuLength);
     int block = (row / 3) * 3 + column / 3;
@@ -116,7 +96,7 @@ void SudokuSolver::appendOneSubscript(vector<vector<int>>& elementSubscriptss, i
     elementSubscriptss.push_back(elementSubscripts);
 }
 
-//Get value according to orthogonal list index
+//根据正交列表索引获取值
 inline int SudokuSolver::getValue(int index){
     return (((index - sudokuSize) % sudokuLength) + 1);
 }

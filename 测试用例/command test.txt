@@ -1,0 +1,11 @@
+./sudoku.exe -a
+./sudoku.exe -n -c
+./sudoku.exe -r
+./sudoku.exe -n 10 -r 0~10100
+./sudoku.exe -n 10 -m 88
+./sudoku.exe -n 10 -m 4
+./sudoku.exe -s
+./sudoku.exe -c 100000
+./sudoku.exe -n 100 -u
+./sudoku.exe -n 10000
+./sudoku.exe -n 30000

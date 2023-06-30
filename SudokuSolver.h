@@ -18,8 +18,6 @@ public:
     bool solveSudoku(DLXNode *listHead, vector<int>& sudoku, vector<int> &answer);
 
     void solveWithAllAnswers(DLXNode *listHead, vector<int>& sudoku, vector<vector<int>>& answers);
-    //用不同的答案解决一个数独
-    void solveWithMultiAnswers(DLXNode* listHead, vector<int>& sudoku, vector<vector<int>>& answers, int answerCount);
 
     //将dlx解决方案转换为数独答案
     void solutionToAnswer(vector<CommonNode*>& solution, vector<int>& answer);

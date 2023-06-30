@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <algorithm>
 #include "DLXGenerator.h"
 #include "SudokuSolver.h"
 
